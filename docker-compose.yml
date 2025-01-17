@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:13
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+    environment:
+      POSTGRES_DB: tracker_db
+      POSTGRES_USER: app_user
+      POSTGRES_PASSWORD: admin@123
+    ports:
+      - "5432:5432"
+  
+  web:
+    build: .
+    command: ["gunicorn", "myproject.wsgi:application", "--bind", "0.0.0.0:8000"]
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - DB_NAME=tracker_db
+      - DB_USER=app_user
+      - DB_PASSWORD=admin@123
+      - DB_HOST=db
+      - DB_PORT=5432
+
+volumes:
+  postgres_data:

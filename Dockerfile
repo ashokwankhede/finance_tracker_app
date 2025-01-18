@@ -26,4 +26,4 @@ COPY . /app/
 EXPOSE 80
 
 # Step 8: Set the command to run the application (adjust this to your start command)
-CMD ["gunicorn", "myproject.wsgi:application", "--bind", "0.0.0.0:80"]
+CMD ["gunicorn", "expense_tracker.wsgi:application", "--bind", "0.0.0.0:80"]

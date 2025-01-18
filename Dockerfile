@@ -10,16 +10,16 @@ WORKDIR /app
 
 # Step 4: Install the system dependencies
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends libpq-dev gcc \
+    && apt-get install -y --no-install-recommends \
+       libpq-dev gcc \
     && rm -rf /var/lib/apt/lists/*
 
 # Step 5: Copy the requirements file to the container
 COPY requirements.txt /app/
 
 # Step 6: Install the Python dependencies
-RUN pip install psycopg2-binary psycopg2
-RUN pip install --no-cache-dir -r requirements.txt
-
+RUN pip install --no-cache-dir psycopg2-binary \
+    && pip install --no-cache-dir -r requirements.txt
 
 # Step 7: Copy the application code to the container
 COPY . /app/

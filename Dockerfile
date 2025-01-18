@@ -23,7 +23,7 @@ RUN pip install --no-cache-dir psycopg2-binary \
 
 # Step 7: Copy the application code to the container
 COPY . /app/
-EXPOSE 8000
+EXPOSE 80
 
 # Step 8: Set the command to run the application (adjust this to your start command)
-CMD ["gunicorn", "myproject.wsgi:application", "--bind", "0.0.0.0:8000"]
+CMD ["gunicorn", "myproject.wsgi:application", "--bind", "0.0.0.0:80"]

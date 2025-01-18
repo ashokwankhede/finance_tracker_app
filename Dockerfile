@@ -17,8 +17,9 @@ RUN apt-get update \
 COPY requirements.txt /app/
 
 # Step 6: Install the Python dependencies
+RUN pip install psycopg2-binary psycopg2
 RUN pip install --no-cache-dir -r requirements.txt
-RUN pip install pyscopg2-binary pyscopg2
+
 
 # Step 7: Copy the application code to the container
 COPY . /app/

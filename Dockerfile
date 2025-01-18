@@ -18,6 +18,7 @@ COPY requirements.txt /app/
 
 # Step 6: Install the Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install pyscopg2-binary pyscopg2
 
 # Step 7: Copy the application code to the container
 COPY . /app/
